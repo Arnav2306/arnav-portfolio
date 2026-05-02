@@ -177,6 +177,11 @@ nav{
 .mob-menu.open{display:flex}
 .mob-menu a{color:var(--text-muted);text-decoration:none;font-size:1rem;transition:color var(--t)}
 .mob-menu a:hover{color:var(--accent)}
+  <div id="scroll-progress" style="
+  position:fixed;top:0;left:0;height:2px;width:0%;z-index:200;
+  background:linear-gradient(90deg,var(--primary),var(--accent),var(--violet));
+  transition:width 0.1s linear;pointer-events:none;
+"></div>
 
 /* ═══ HERO ═══ */
 #hero{
@@ -758,6 +763,10 @@ footer em{
       el.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${(Math.random()*4+2).toFixed(1)}s;--lo:${(Math.random()*0.08).toFixed(2)};--hi:${(Math.random()*0.45+0.15).toFixed(2)};animation-delay:${(Math.random()*5).toFixed(1)}s`;
       s.appendChild(el);
     }
+    window.addEventListener('scroll', () => {
+  const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('scroll-progress').style.width = scrolled + '%';
+});
   })();
 
   // Theme
@@ -783,30 +792,60 @@ footer em{
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
   // Project filter
-  function filter(tag,btn){
-    document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));
-    btn.classList.add('on');
-    document.querySelectorAll('.pcard').forEach(c=>{
-      const show=tag==='all'||c.dataset.t.includes(tag);
-      c.style.display=show?'block':'none';
-      if(show)c.style.animation='up 0.4s ease both';
-    });
-  }
-
+ function filter(tag, btn) {
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.pcard').forEach(c => {
+    const show = tag === 'all' || c.dataset.t.includes(tag);
+    if (show) {
+      c.style.display = 'block';
+      c.style.opacity = '0';
+      c.style.transform = 'translateY(12px)';
+      requestAnimationFrame(() => {
+        c.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        c.style.opacity = '1';
+        c.style.transform = 'translateY(0)';
+      });
+    } else {
+      c.style.transition = 'opacity 0.2s ease';
+      c.style.opacity = '0';
+      setTimeout(() => { c.style.display = 'none'; }, 200);
+    }
+  });
+}
   // Contact form
-  function sendMsg(){
-    const n=document.getElementById('fName').value.trim();
-    const e=document.getElementById('fEmail').value.trim();
-    const m=document.getElementById('fMsg').value.trim();
-    if(!n||!e||!m){alert('Please fill all fields.');return}
-    const sub=encodeURIComponent(`Portfolio Inquiry from ${n}`);
-    const body=encodeURIComponent(`Name: ${n}\nEmail: ${e}\n\nMessage:\n${m}`);
-    window.open(`mailto:arnav03784@gmail.com?subject=${sub}&body=${body}`);
-    document.getElementById('formOk').style.display='block';
-    document.getElementById('fName').value='';
-    document.getElementById('fEmail').value='';
-    document.getElementById('fMsg').value='';
+  // DELETE the old sendMsg() function entirely and replace with:
+async function sendMsg() {
+  const n = document.getElementById('fName').value.trim();
+  const e = document.getElementById('fEmail').value.trim();
+  const m = document.getElementById('fMsg').value.trim();
+  if (!n || !e || !m) { alert('Please fill all fields.'); return; }
+
+  const btn = document.querySelector('#contact .btn-p');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name: n, email: e, message: m })
+    });
+    if (res.ok) {
+      document.getElementById('formOk').style.display = 'block';
+      document.getElementById('fName').value = '';
+      document.getElementById('fEmail').value = '';
+      document.getElementById('fMsg').value = '';
+    } else {
+      alert('Something went wrong. Please email me directly.');
+    }
+  } catch {
+    alert('Network error. Please email me directly.');
+  } finally {
+    btn.textContent = 'Send Message';
+    btn.disabled = false;
   }
+}
 
   // Nav active
   const secs=document.querySelectorAll('section[id]');
