@@ -1057,6 +1057,248 @@
       line-height: 1.7;
     }
 
+    /* ═══ CERTIFICATES SECTION ═══ */
+    #certificates {
+      background: var(--bg-alt);
+    }
+
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .cert-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .cert-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .cert-img-wrap {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-surface);
+      cursor: pointer;
+    }
+
+    .cert-img-wrap img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cert-card:hover .cert-img-wrap img {
+      transform: scale(1.03);
+    }
+
+    .cert-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 8, 8, 0.42);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .cert-card:hover .cert-img-overlay {
+      opacity: 1;
+    }
+
+    .cert-zoom-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(198, 167, 107, 0.18);
+      border: 1.5px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      backdrop-filter: blur(4px);
+    }
+
+    .cert-body {
+      padding: 1.25rem 1.4rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 0.35rem;
+    }
+
+    .cert-issuer {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+      color: var(--accent);
+    }
+
+    .cert-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+    }
+
+    .cert-actions {
+      margin-top: auto;
+      padding-top: 0.85rem;
+    }
+
+    .cert-view-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      border-radius: 8px;
+      padding: 0.5rem 0.9rem;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+
+    .cert-view-btn:hover {
+      background: rgba(198, 167, 107, 0.18);
+      border-color: var(--accent);
+      color: var(--accent-hover);
+    }
+
+    .certs-footer {
+      display: flex;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+
+    /* Lightbox */
+    .lb-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      background: rgba(4, 4, 4, 0.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 1.5rem;
+    }
+
+    .lb-overlay.open {
+      display: flex;
+    }
+
+    .lb-close {
+      position: fixed;
+      top: 1.25rem;
+      right: 1.5rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all var(--transition);
+      z-index: 910;
+    }
+
+    .lb-close:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .lb-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all var(--transition);
+      z-index: 910;
+    }
+
+    .lb-nav:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    #lbPrev { left: 1.25rem; }
+    #lbNext { right: 1.25rem; }
+
+    .lb-img-wrap {
+      max-width: min(860px, 92vw);
+      width: 100%;
+    }
+
+    .lb-img-wrap img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+      display: block;
+    }
+
+    .lb-caption {
+      margin-top: 1rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .lb-caption strong {
+      color: var(--text);
+    }
+
+    .lb-counter {
+      margin-top: 0.4rem;
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .certs-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) and (min-width: 769px) {
+      .certs-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
     /* ═══ CONTACT SECTION ═══ */
     #contact {
       background: var(--bg);
@@ -1273,7 +1515,7 @@
   <header>
     <div class="nav-container">
       <a href="#hero" class="nav-logo" aria-label="Arnav Verma Home">
-        Arnav<span>.</span>
+        <span></span>
       </a>
 
       <!-- Desktop Nav -->
@@ -1283,6 +1525,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
+          <li><a href="#certificates">Certificates</a></li>
           <li><a href="#journey">Journey</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -1324,6 +1567,7 @@
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
+      <a href="#certificates">Certificates</a>
       <a href="#journey">Journey</a>
       <a href="#contact">Contact</a>
     </div>
@@ -1341,15 +1585,15 @@
 
           <h1 class="hero-title hero-title-anim">
             Hi, I'm Arnav Verma<br/>
-            I build <span class="highlight">practical software solutions</span>.
+            I build <span class="highlight">practical software solutions</span>
           </h1>
 
           <p class="hero-subtitle hero-sub-anim">
-            Developer · Practical Problem Solver · AI Integrations
+            Developer · Practical Problem Solver · AI Enthusiast
           </p>
 
           <p class="hero-bio hero-bio-anim">
-            I am a developer focused on building useful digital experiences, solving tangible problems, and integrating modern AI capabilities into real-world software workflows.
+            I turn ideas into impactful digital solutions by combining software development, creative problem-solving, and AI integration to build practical technology that solves real-world challenges.
           </p>
 
           <div class="hero-actions hero-actions-anim">
@@ -1824,6 +2068,117 @@
 
     <div class="section-divider"></div>
 
+    <!-- ═══ CERTIFICATES SECTION ═══ -->
+    <section id="certificates">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-eyebrow">Credentials</div>
+          <h2 class="section-title">Certificates</h2>
+          <p class="section-desc">
+            A selection of verified certificates from completed courses, programs, and competitions.
+          </p>
+        </div>
+
+        <div class="certs-grid">
+
+          <!-- CERTIFICATE 1: C++ Udemy -->
+          <div class="cert-card reveal">
+            <div class="cert-img-wrap" onclick="openLightbox(0)" role="button" tabindex="0" aria-label="View C++ Udemy certificate full size" onkeydown="if(event.key==='Enter')openLightbox(0)">
+              <img src="assets/certificates/cert-cpp-udemy.png" alt="Beginning C++ Programming – From Beginner to Beyond certificate issued by Udemy" loading="lazy"/>
+              <div class="cert-img-overlay">
+                <div class="cert-zoom-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="cert-body">
+              <div class="cert-issuer">Udemy</div>
+              <div class="cert-title">Beginning C++ Programming – From Beginner to Beyond</div>
+              <div class="cert-actions">
+                <a href="assets/certificates/cert-cpp-udemy.png" target="_blank" rel="noopener noreferrer" class="cert-view-btn" title="Open certificate image in new tab">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  View Certificate
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CERTIFICATE 2: SIH Medicaps -->
+          <div class="cert-card reveal">
+            <div class="cert-img-wrap" onclick="openLightbox(1)" role="button" tabindex="0" aria-label="View SIH Medicaps certificate full size" onkeydown="if(event.key==='Enter')openLightbox(1)">
+              <img src="assets/certificates/cert-sih-medicaps.png" alt="Internal Smart India Hackathon 2026 participation certificate from Medicaps University" loading="lazy"/>
+              <div class="cert-img-overlay">
+                <div class="cert-zoom-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="cert-body">
+              <div class="cert-issuer">Medicaps University</div>
+              <div class="cert-title">Internal Smart India Hackathon 2026</div>
+              <div class="cert-actions">
+                <a href="assets/certificates/cert-sih-medicaps.png" target="_blank" rel="noopener noreferrer" class="cert-view-btn" title="Open certificate image in new tab">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  View Certificate
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CERTIFICATE 3: Developer Catalyst -->
+          <div class="cert-card reveal">
+            <div class="cert-img-wrap" onclick="openLightbox(2)" role="button" tabindex="0" aria-label="View Developer Catalyst Program Silver certificate full size" onkeydown="if(event.key==='Enter')openLightbox(2)">
+              <img src="assets/certificates/cert-developer-catalyst.png" alt="Developer Catalyst Program Silver certificate" loading="lazy"/>
+              <div class="cert-img-overlay">
+                <div class="cert-zoom-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="cert-body">
+              <div class="cert-issuer">Developer Catalyst Program</div>
+              <div class="cert-title">Developer Catalyst — Silver Certificate</div>
+              <div class="cert-actions">
+                <a href="assets/certificates/cert-developer-catalyst.png" target="_blank" rel="noopener noreferrer" class="cert-view-btn" title="Open certificate image in new tab">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  View Certificate
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- View All button -->
+        <div class="certs-footer reveal">
+          <button class="btn btn-primary" id="viewAllCertsBtn" onclick="openLightbox(0)" aria-label="Open gallery of all certificates">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            View All Certificates
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ LIGHTBOX GALLERY ═══ -->
+    <div class="lb-overlay" id="lbOverlay" role="dialog" aria-modal="true" aria-label="Certificate gallery">
+      <button class="lb-close" id="lbClose" aria-label="Close gallery">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <button class="lb-nav" id="lbPrev" aria-label="Previous certificate">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="lb-nav" id="lbNext" aria-label="Next certificate">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <div class="lb-img-wrap">
+        <img id="lbImg" src="" alt="" />
+        <p class="lb-caption"><strong id="lbTitle"></strong><br/><span id="lbIssuer"></span></p>
+        <p class="lb-counter" id="lbCounter"></p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
     <!-- ═══ CURRENTLY LEARNING SECTION ═══ -->
     <section id="learning">
       <div class="container">
@@ -2083,6 +2438,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
+          <li><a href="#certificates">Certificates</a></li>
           <li><a href="#journey">Journey</a></li>
           <li><a href="#contact">Contact</a></li>
           <li><a href="https://github.com/Arnav2306" target="_blank" rel="noopener noreferrer">GitHub</a></li>
@@ -2214,6 +2570,70 @@
         document.body.removeChild(tempInput);
       }
     }
+
+    // ─── LIGHTBOX GALLERY ───
+    const lbCerts = [
+      {
+        src: 'assets/certificates/cert-cpp-udemy.png',
+        title: 'Beginning C++ Programming – From Beginner to Beyond',
+        issuer: 'Udemy'
+      },
+      {
+        src: 'assets/certificates/cert-sih-medicaps.png',
+        title: 'Internal Smart India Hackathon 2026',
+        issuer: 'Medicaps University'
+      },
+      {
+        src: 'assets/certificates/cert-developer-catalyst.png',
+        title: 'Developer Catalyst — Silver Certificate',
+        issuer: 'Developer Catalyst Program'
+      }
+    ];
+
+    let lbIndex = 0;
+    const lbOverlay = document.getElementById('lbOverlay');
+    const lbImg     = document.getElementById('lbImg');
+    const lbTitle   = document.getElementById('lbTitle');
+    const lbIssuer  = document.getElementById('lbIssuer');
+    const lbCounter = document.getElementById('lbCounter');
+
+    function lbShow(idx) {
+      lbIndex = (idx + lbCerts.length) % lbCerts.length;
+      const c = lbCerts[lbIndex];
+      lbImg.src = c.src;
+      lbImg.alt = c.title + ' — ' + c.issuer;
+      lbTitle.textContent = c.title;
+      lbIssuer.textContent = c.issuer;
+      lbCounter.textContent = (lbIndex + 1) + ' / ' + lbCerts.length;
+    }
+
+    function openLightbox(idx) {
+      lbShow(idx);
+      lbOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('lbClose').focus();
+    }
+
+    function closeLightbox() {
+      lbOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('lbClose').addEventListener('click', closeLightbox);
+    document.getElementById('lbPrev').addEventListener('click', () => lbShow(lbIndex - 1));
+    document.getElementById('lbNext').addEventListener('click', () => lbShow(lbIndex + 1));
+
+    lbOverlay.addEventListener('click', (e) => {
+      if (e.target === lbOverlay) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lbOverlay.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft')  lbShow(lbIndex - 1);
+      if (e.key === 'ArrowRight') lbShow(lbIndex + 1);
+    });
   </script>
+
 </body>
 </html>
