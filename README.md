@@ -81,6 +81,7 @@ arnav-portfolio/
    - Interactive algorithm animation tool demonstrating Bubble Sort, Selection Sort, and Insertion Sort.
    - Dynamic array sizing, adjustable execution speed, and live comparison/swap metrics.
    - **Stack:** Pure JavaScript (Async/Await), DOM API, HTML5, CSS3.
+   - **Demo:** [sorting-algorithm-visualizer-blue.vercel.app](https://sorting-algorithm-visualizer-blue.vercel.app/)
 
 4. **[Personal Portfolio Website](https://github.com/Arnav2306/arnav-portfolio)**
    - High-performance, accessible, recruiter-ready developer portfolio.
