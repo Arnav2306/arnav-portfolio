@@ -75,6 +75,7 @@ arnav-portfolio/
    - AI-powered healthcare discovery and appointment platform that helps users explore doctors and hospitals, receive symptom-based specialty recommendations, and manage appointments through a bilingual interface.
    - Features AI-powered symptom guidance chatbot, English/Hindi language switching, hospital & doctor discovery, and booking management.
    - **Stack:** React, Vite, Tailwind CSS, Node.js, Express.js, MongoDB, AI API Integration.
+   - **Demo:** [sehat-setu-plum.vercel.app](https://sehat-setu-plum.vercel.app/)
 
 3. **[DSA Sorting Visualizer](https://github.com/Arnav2306/sorting-algorithm-visualizer)**
    - Interactive algorithm animation tool demonstrating Bubble Sort, Selection Sort, and Insertion Sort.
