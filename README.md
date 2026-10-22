@@ -71,12 +71,17 @@ arnav-portfolio/
    - **Stack:** React 18, TypeScript, Tailwind CSS, Python / Django REST Framework, Vercel & Render.
    - **Demo:** [reunite-nine.vercel.app](https://reunite-nine.vercel.app/)
 
-2. **[DSA Sorting Visualizer](https://github.com/Arnav2306/sorting-algorithm-visualizer)**
+2. **[SehatSetu — AI Healthcare & Appointment Platform](https://github.com/Arnav2306/SehatSetu)**
+   - AI-powered healthcare discovery and appointment platform that helps users explore doctors and hospitals, receive symptom-based specialty recommendations, and manage appointments through a bilingual interface.
+   - Features AI-powered symptom guidance chatbot, English/Hindi language switching, hospital & doctor discovery, and booking management.
+   - **Stack:** React, Vite, Tailwind CSS, Node.js, Express.js, MongoDB, AI API Integration.
+
+3. **[DSA Sorting Visualizer](https://github.com/Arnav2306/sorting-algorithm-visualizer)**
    - Interactive algorithm animation tool demonstrating Bubble Sort, Selection Sort, and Insertion Sort.
    - Dynamic array sizing, adjustable execution speed, and live comparison/swap metrics.
    - **Stack:** Pure JavaScript (Async/Await), DOM API, HTML5, CSS3.
 
-3. **[Personal Portfolio Website](https://github.com/Arnav2306/arnav-portfolio)**
+4. **[Personal Portfolio Website](https://github.com/Arnav2306/arnav-portfolio)**
    - High-performance, accessible, recruiter-ready developer portfolio.
    - **Stack:** Semantic HTML5, CSS Design System, Vanilla JavaScript.
 
